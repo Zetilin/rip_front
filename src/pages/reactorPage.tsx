@@ -29,32 +29,32 @@ export const AlbumPage: FC = () => {
   }, [id]);
 
   return (
-   <main className="container">
-    <BreadCrumbs 
-        crumbs={[
-          { label: ROUTE_LABELS.REACTORS, path: ROUTES.REACTORS },
-          { label: pageData ? `${pageData.name}` : "Реактор" },
-        ]}
-      />
-      {pageData ? ( // проверка на наличие данных, иначе загрузка
-        <div className="row">
-          <div className="col-6">
-            <img src={pageData.image as string ? pageData.image.replace('http://localhost:9000', '/minio') as string : defaultImage} className="reactor-image"/>
-          </div>
-          <div className="col-6 d-flex flex-md-column gap-md-3">
-            <h1>{pageData.name}</h1>
-            <span>Описание: { pageData.description }</span>
-            <span>Топливо: { pageData.fuel }</span>
-            <Link to={`/reactors/`} className="return-btn btn btn-primary my-4 w-25">
-                Назад
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <div className="album_page_loader_block">{}
-          <Spinner animation="border" />
-        </div>
-      )}
-   </main>
-  );
+    <main className="container reactor-page"> {/* Добавляем уникальный класс */}
+     <BreadCrumbs 
+         crumbs={[
+           { label: ROUTE_LABELS.REACTORS, path: ROUTES.REACTORS },
+           { label: pageData ? `${pageData.name}` : "Реактор" },
+         ]}
+       />
+       {pageData ? ( // проверка на наличие данных, иначе загрузка
+         <div className="row">
+           <div className="col-6">
+             <img src={pageData.image as string ? pageData.image.replace('http://localhost:9000', '/minio') as string : defaultImage} className="reactor-image"/>
+           </div>
+           <div className="col-6 reactor-info">
+             <h1>{pageData.name}</h1>
+             <span>Описание: { pageData.description }</span>
+             <span>Топливо: { pageData.fuel }</span>
+             <Link to={`/reactors/`} className="return-btn btn btn-primary my-4 w-25">
+                 Назад
+             </Link>
+           </div>
+         </div>
+       ) : (
+         <div className="album_page_loader_block">{}
+           <Spinner animation="border" />
+         </div>
+       )}
+    </main>
+   );
 };

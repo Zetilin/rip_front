@@ -353,3 +353,65 @@ main {
         column-gap: 175px;
     }
 }
+/* Уникальный класс для страницы реактора */
+.reactor-page {
+    width: 100%;
+    max-width: 100%;
+}
+/* Применяем flexbox */
+.reactor-info {
+    display: flex;
+}
+.reactor-image {
+    width: 100% !important; /* Картинка занимает всю ширину */
+    height: auto !important; /* Сохраняем пропорции изображения */
+    margin-bottom: 20px; /* Добавляем отступ снизу */
+}
+
+/* На экранах среднего размера и выше (md и больше) */
+@media (min-width: 768px) {
+    .reactor-info {
+        flex-direction: column; /* Меняем направление на column */
+        gap: 1rem; /* Добавляем отступы между элементами (1rem = 16px) */
+    }
+}
+
+/* Медиа-запрос для узких экранов */
+@media (max-width: 768px) {
+    .reactor-page .row {
+        flex-direction: column; /* Меняем направление flex на столбец */
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .reactor-page .col-6 {
+        width: 100% !important; /* Занимаем всю ширину на узких экранах */
+        max-width: 100% !important; /* Убираем ограничение по максимальной ширине */
+    }
+
+    .reactor-page .reactor-image {
+        width: 100% !important; /* Картинка занимает всю ширину */
+        height: auto !important; /* Сохраняем пропорции изображения */
+        margin-bottom: 20px; /* Добавляем отступ снизу */
+    }
+
+    .reactor-page .reactor-info {
+        display: flex;
+        flex-direction: column; /* Текст и кнопка в столбик */
+        gap: 10px; /* Отступы между элементами */
+        width: 100% !important; /* Занимаем всю ширину */
+        max-width: 100% !important; /* Убираем ограничение по максимальной ширине */
+    }
+
+    .reactor-page .reactor-info h1,
+    .reactor-page .reactor-info span {
+        width: 100% !important; /* Текст занимает всю ширину */
+        max-width: 100% !important; /* Убираем ограничение по максимальной ширине */
+        white-space: normal !important; /* Разрешаем перенос текста */
+    }
+
+    .reactor-page .return-btn {
+        width: auto !important; /* Кнопка "Назад" сохраняет свой размер */
+        margin-top: 20px; /* Добавляем отступ сверху */
+    }
+}
