@@ -39,7 +39,7 @@ export const AlbumPage: FC = () => {
       {pageData ? ( // проверка на наличие данных, иначе загрузка
         <div className="row">
           <div className="col-6">
-            <img src={pageData.image as string || defaultImage} className="reactor-image"/>
+            <img src={pageData.image as string ? pageData.image.replace('http://localhost:9000', '/minio') as string : defaultImage} className="reactor-image"/>
           </div>
           <div className="col-6 d-flex flex-md-column gap-md-3">
             <h1>{pageData.name}</h1>

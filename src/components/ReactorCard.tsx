@@ -41,7 +41,7 @@ export const ReactorCard: FC<ReactorCardProps> = ({
     <Card className="card">
       <Card.Img
         className="reactor-preview"
-        src={image || defaultImage}
+        src={image ? image.replace('http://localhost:9000', '/minio') : defaultImage}
         onClick={imageClickHandler}
       />
       <div className="card-body">

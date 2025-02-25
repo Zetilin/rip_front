@@ -8,14 +8,14 @@ import './styles.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/rip_front">
     <div className="space">
         <Navigation/>
         <div className="content-container">
           <Routes>
-            <Route path={ROUTES.HOME} index element={<HomePage />} />
-            <Route path={ROUTES.REACTORS} element={<ITunesPage />} />
-            <Route path={`${ROUTES.REACTORS}/:id`} element={<AlbumPage />} />
+            <Route path="/" index element={<HomePage />} />
+            <Route path="/reactors" element={<ITunesPage />} />
+            <Route path="/reactors/:id" element={<AlbumPage />} />
           </Routes>
         </div>
     </div>

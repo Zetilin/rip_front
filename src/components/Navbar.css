@@ -1,0 +1,58 @@
+.navbar {
+    background-color: white;
+}
+
+.fit-content {
+    width: fit-content;
+}
+
+.flex-dir-row {
+    flex-direction: row;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    text-decoration: none;
+    font-family: "Fira Sans", sans-serif;
+    width: 100px;
+    
+
+    img {
+        width: 2.5rem;
+        border-radius: 5px;
+    }
+
+    span {
+        display: inline;
+        --tw-text-opacity: 1;
+        color: BLACK;
+        font-weight: 500;
+    }
+}
+.navbar-nav {
+    width: fit-content;
+    margin-right: 3%;
+    .nav-link {
+        text-align: right;
+        background-color: white;
+        text-decoration: none;
+        font-family: "Fira Sans", sans-serif;
+        --tw-text-opacity: 1;
+        color: black;
+        font-weight: 300;
+    }
+    }
+
+.custom-navbar-toggler {
+    color: black !important /* Цвет иконки */
+}
+    
+.navbar-toggler {
+    border-color: black !important /* Цвет рамки кнопки (опционально) */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(0, 0, 0)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important
+}

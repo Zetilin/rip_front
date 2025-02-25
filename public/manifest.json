@@ -1,0 +1,28 @@
+{
+    "name": "АЭС СССР и СНГ",
+    "short_name": "Nuclear",
+    "start_url": "/rip_front/",
+    "display": "standalone",
+    "background_color": "#fdfdfd",
+    "theme_color": "#fdfdfd",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "logo512.png",
+        "type": "image/png", "sizes": "800x800"
+      }
+    ],
+    "screenshots": [
+    {
+      "src": "screen_pc.jpg",
+      "sizes": "1280x658",
+      "type": "image/jpg",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screen_mob.jpg",
+      "sizes": "770x1280",
+      "type": "image/jpg"
+    }
+  ]
+  }
