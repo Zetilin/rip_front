@@ -8,9 +8,12 @@ import { ROUTES, ROUTE_LABELS } from "../../Routes";
 import { ReactorCard } from "../components/ReactorCard";
 import { useNavigate } from "react-router-dom";
 import { REACTORS_MOCK } from "../modules/mock";
+import { useSelector, useDispatch } from "react-redux";
+import { setSearchValue, selectSearchValue } from '../slices/reactorSlice'
 
 const ITunesPage: FC = () => {
-  const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
+  const searchValue = useSelector(selectSearchValue); // Получаем значение поиска из Redux
   const [loading, setLoading] = useState(false);
   const [reactors, setReactors] = useState<Reactor[]>([]);
 
@@ -65,7 +68,7 @@ const ITunesPage: FC = () => {
       <div className="row d-flex justify-content-between">
         <InputField
           value={searchValue}
-          setValue={(value) => setSearchValue(value)}
+          onChange={(e) => dispatch(setSearchValue(e.target.value))}
           loading={loading}
           onSubmit={handleSearch}
           placeholder="Введите название"

@@ -5,13 +5,13 @@ import '../styles.css'
 
 interface Props {
   value: string;
-  setValue: (value: string) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: () => void;
   loading: boolean;
   placeholder: string;
 }
 
-const InputField: FC<Props> = ({ value, setValue, onSubmit, loading, placeholder }) => (
+const InputField: FC<Props> = ({ value, onChange, onSubmit, loading, placeholder }) => (
     <div className="col-md-8">
       <form className="search-bar" onSubmit={(e) => { e.preventDefault(); onSubmit(); }}>
         <div className="row">
@@ -21,7 +21,7 @@ const InputField: FC<Props> = ({ value, setValue, onSubmit, loading, placeholder
               className="form-control"
               placeholder={placeholder}
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={onChange}
               name="reactor_name"
             />
           </div>
