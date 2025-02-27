@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom';
 //import "./ReactorCard.css";
 import "../styles.css"
 import defaultImage from "../assets/defaultImage.png"
+import { RootState, useAppDispatch} from '../store'
+import { useNavigate } from "react-router-dom";
+import { addReactor } from '../slices/stationsSlice'
+import { useSelector } from 'react-redux';
+import { ROUTES, ROUTE_LABELS } from "../../Routes";
+import { getReactorList } from "../slices/reactorSlice";
 
 interface ReactorCardProps {
     id: number;
@@ -22,22 +28,20 @@ export const ReactorCard: FC<ReactorCardProps> = ({
     imageClickHandler,
 }) => {
 
-  return (/*
-    <Card className="card">
-      <Card.Body className="p-0">
-        <div className="text-container">
-          <Card.Title className="primary-text">{name}</Card.Title>
-          <Card.Subtitle className="secondary-text">Топливо: {fuel}</Card.Subtitle>
-        </div>
-      </Card.Body>
-      <Card.Img
-        className="cardImage"
-        variant="bottom"
-        src={image || defaultImage}
-        onClick={imageClickHandler}
-      />
-    </Card>
-  );*/
+  //const { id } = useParams(); // ид страницы, пример: "/albums/12"
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
+  const handleAdd = async () => {
+        await dispatch(addReactor(id.toString()));
+        await dispatch(getReactorList());
+        navigate(`${ROUTES.REACTORS}`);
+}
+//<button className="add-btn btn btn-secondary" type="button">
+//Добавить
+//</button>
+  
+  return (
     <Card className="card">
       <Card.Img
         className="reactor-preview"
@@ -56,9 +60,9 @@ export const ReactorCard: FC<ReactorCardProps> = ({
             </Link>
           </div>
           <div className="col d-flex justify-content-center">
-            <button className="add-btn btn btn-secondary" type="button">
-              Добавить
-            </button>
+            {(isAuthenticated == true ) && (
+            <button type="button" className="add-btn btn btn-secondary" onClick={() => handleAdd() }>Добавить</button>
+          )}
           </div>
         </div>
       </div>

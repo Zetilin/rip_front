@@ -1,0 +1,200 @@
+
+.info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+    width: 100%;
+    height: 20%;
+    font-size: 15px;
+
+    .primary-text {
+        margin: 0%;
+        margin-left: 1%;
+        margin-right: 2px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+    
+    .submit-btn {
+        display: flex;
+        margin-top: 0%;
+        margin-left: 1%;
+        height: 10%;
+        width: 100px;
+        background-color: black;
+        color: white;
+        font-size: 15px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        border: 1px solid black;
+    }
+}
+
+.m-commit-btn {
+    display: flex;
+    margin-top: 0%;
+    height: 40%;
+    width: 120px;
+    background-color: green !important;
+    color: white;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid green !important;
+}
+
+.m-reject-btn {
+    display: flex;
+    margin-top: 0%;
+    height: 40%;
+    width: 120px;
+    background-color: red !important;
+    color: white;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid red !important;
+}
+
+.meetup-card-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: fit-content;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    margin-top: 20px;
+    gap: 1.25rem;
+
+    .speaker-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 2%;
+        background-color: white;
+        box-shadow: -6px -6px 20px rgba(186, 202, 247, .1), 24px 24px 30px rgba(209, 220, 250, .12), 8px 8px 8px rgba(163, 184, 245, .1);
+        border-radius: 30px;
+        height: 100px;
+
+        img {
+            width: 100px; /* Ширина изображений */
+            height: 100px; /* Высота изображении */
+            border-radius: 20px;
+        }
+    
+        .duration-input {
+        margin-left: 30px;
+        width: 40px;
+        height: 42px;
+        --tw-bg-opacity: 1;
+        background-color: rgb(245 248 254 / var(--tw-bg-opacity));
+        border: 0;
+        border-radius: 30px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        text-align: center;
+        box-shadow: -6px -6px 20px rgba(186, 202, 247, .1), 24px 24px 30px rgba(209, 220, 250, .12), 8px 8px 8px rgba(163, 184, 245, .1);
+        }
+
+        .m-text-container {
+            display: flex;
+            height: 100%;
+            width: 20%;
+            justify-content: center;
+            align-items: center;
+    
+            .primary-text {
+                margin-top: 1%;
+                margin-bottom: 0%;
+                font-family: "Inter", sans-serif;
+                font-weight: 500;
+                font-style: normal;
+                font-size: small;
+            }
+    
+            .secondary-text {
+                margin: 0%;
+                font-family: "Inter", sans-serif;
+                font-weight: 150;
+                font-style:normal;
+            }
+        }
+    }
+}
+
+.dinner-icon {
+    margin-left: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Обертка для всплывающего окна с QR-кодом */
+.qr-hover-wrapper {
+    position: relative;
+}
+
+/* Всплывающий блок с QR-кодом */
+.qr-hover {
+    display: none; /* Изначально скрыто */
+    position: absolute; /* Абсолютное позиционирование относительно родителя */
+    top: 50%; /* Верхний край на половине высоты родителя */
+    left: calc(-100% - 100px); /* Левый край смещен на ширину родителя минус 100 пикселей */
+    transform: translateY(-50%) translateX(-80%) scale(1.5);
+    /*
+     * Трансформация:
+     *   translateY(-50%) - смещение вверх на половину своей высоты для центрирования по вертикали,
+     *   translateX(-80%) - смещение влево на 80% ширины родителя,
+     *   scale(1.5) - увеличение размера в 1.5 раза
+     */
+    z-index: 1000; /* Высокий уровень z-индекса для вывода поверх других элементов */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    p {
+        font-size: 12px;
+    }
+}
+
+.qr-code {
+    width: 120px;
+    height: 120px;
+}
+
+/* При наведении на иконку QR-код становится видимым */
+.qr-hover-wrapper:hover .qr-hover {
+    display: block;
+}
+
+/* Псевдоэлемент для иконки статуса при наведении */
+.status-icon:hover::after {
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%); /* Центрируем по горизонтали */
+    background-color: #fff;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+}

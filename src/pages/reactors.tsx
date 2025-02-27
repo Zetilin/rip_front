@@ -9,59 +9,37 @@ import { ReactorCard } from "../components/ReactorCard";
 import { useNavigate } from "react-router-dom";
 import { REACTORS_MOCK } from "../modules/mock";
 import { useSelector, useDispatch } from "react-redux";
-import { setSearchValue, selectSearchValue } from '../slices/reactorSlice'
+import { setSearchValue, selectSearchValue, getReactorList } from '../slices/reactorSlice'
+import { useAppDispatch, RootState } from '../store';
+import { CartCard } from "../components/cartCard";
 
 const ITunesPage: FC = () => {
-  const dispatch = useDispatch();
-  const searchValue = useSelector(selectSearchValue); // Получаем значение поиска из Redux
-  const [loading, setLoading] = useState(false);
-  const [reactors, setReactors] = useState<Reactor[]>([]);
+  //const dispatch = useDispatch();
+  //const { searchValue, loading } = useSelector((state: RootState) => state.reactor); // Получаем значение поиска из Redux
+  //const [reactors, setReactors] = useState<Reactor[]>([]);
+  const dispatch = useAppDispatch();
+  const { searchValue, loading } = useSelector((state: RootState) => state.reactor); // Получаем значение поиска из Redux
+  const reactorsData = useSelector((state: RootState) => state.reactor.reactorsData);
+  const reactors = reactorsData?.reactors || [];
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoading(true);
-    getReactors()
-      .then((response) => {
-        setReactors(response.reactors);
-        setLoading(false);
-      })
-      .catch(() => {
-        setReactors(REACTORS_MOCK.reactors); // Используем mock данные в случае ошибки
-        setLoading(false);
-      });
-  }, []); // Пустой массив зависимостей означает, что эффект выполнится только один раз
+  const current_station_id =reactorsData?.draft_station || null;
+  const reactors_quantity = reactorsData?.reactors_count || null;
 
-  const handleSearch = () => {
-    setLoading(true);
-    getReactors()
-      .then((response) => {
-        setReactors(
-          response.reactors.filter((item) =>
-              item.name
-                  .toLocaleLowerCase()
-                  .startsWith(searchValue.toLocaleLowerCase())
-          )
-        );
-        setLoading(false);
-      })
-      .catch(() => { // В случае ошибки используем mock данные, фильтруем по имени
-        setReactors(
-          REACTORS_MOCK.reactors.filter((item) =>
-            item.name
-              .toLocaleLowerCase()
-              .startsWith(searchValue.toLocaleLowerCase())
-          )
-        ); 
-        setLoading(false);
-      });
-  };
+  useEffect(() => {
+    dispatch(getReactorList());
+  }, [dispatch]); 
   const handleCardClick = (id: number) => {
     // клик на карточку, переход на страницу альбома
     navigate(`${ROUTES.REACTORS}/${id}`);
   };
 
   return (
+
+    /*button type="submit" className="bin btn btn-secondary disabled w-50">
+              Корзина
+          </button>*/
 
 
     <main className="container">
@@ -70,14 +48,10 @@ const ITunesPage: FC = () => {
           value={searchValue}
           onChange={(e) => dispatch(setSearchValue(e.target.value))}
           loading={loading}
-          onSubmit={handleSearch}
+          //onSubmit={handleSearch}
           placeholder="Введите название"
         />
-        <div className="col-md-3 justify-end">
-          <button type="submit" className="bin btn btn-secondary disabled w-50">
-              Корзина
-          </button>
-        </div>
+        <CartCard value={reactors_quantity} station_id={current_station_id}/>
       </div>
 
       <BreadCrumbs crumbs={[{ label: ROUTE_LABELS.REACTORS }]} />

@@ -3,7 +3,7 @@ export interface Reactor {
     name: string;
     fuel: string;
     description: string;
-    img_url: string;
+    image: string;
   }
   export interface ReactorsResult {
     current_station_id: number,
@@ -24,3 +24,16 @@ export interface Reactor {
       (response) => response.json()
     );
   }; 
+
+  export interface Station {
+    "id": number;
+    "status": number;
+    "owner": number;
+    "moderator": string;
+    "date_created": Date | null;
+    "date_formation": Date | null;
+    "date_complete": Date | null;
+    "name": string;
+    "location": string;
+    "year": number;
+  }

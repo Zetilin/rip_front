@@ -1,9 +1,21 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import dataReducer from "./slices/reactorSlice"
+import { reactorReducer } from "./slices/reactorSlice"
+import { useDispatch } from 'react-redux';
+import userReducer from './slices/userSlice'; 
+import { stationsReducer } from './slices/stationsSlice'
 
-
-export default configureStore({
+export const store = configureStore({
     reducer: combineReducers({
-        filter: dataReducer
+        reactor: reactorReducer,
+        user: userReducer,
+        station: stationsReducer,
     })
 })
+
+export type RootState = ReturnType<typeof store.getState>;
+
+// Тип для dispatch с поддержкой thunk
+export type AppDispatch = typeof store.dispatch;
+
+// Кастомный хук useAppDispatch
+export const useAppDispatch = () => useDispatch<AppDispatch>();
