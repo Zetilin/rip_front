@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "identifier": "com.tauri.dev",
   "build": {
-    "frontendDist": "../build",
-    "devUrl": "https://192.168.31.8:3000",
+    "frontendDist": "../Dist",
+    "devUrl": "https://192.168.31.8:3000/rip_front",
     "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build"
   },

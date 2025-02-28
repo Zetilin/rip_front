@@ -5,7 +5,11 @@ export const ROUTES = {
   STATION: '/station',
   REGISTER: '/register',
   FORBIDDEN: "/403",
-  ACCOUNT: "/account"
+  ACCOUNT: "/account",
+  REACTORSEDITOR: "/reactors-editor",
+  REACTORSCREATOR: "/reactors-create",
+  REACTORSLISTEDITOR: "/reactors-list-editor",
+  STATIONSEDITOR: "/stations-editor"
 }
 export type RouteKeyType = keyof typeof ROUTES;
 export const ROUTE_LABELS: {[key in RouteKeyType]: string} = {
@@ -15,5 +19,9 @@ export const ROUTE_LABELS: {[key in RouteKeyType]: string} = {
   STATION: "Станция",
   REGISTER: "Регистрация",
   FORBIDDEN: "403",
-  ACCOUNT: "Личный кабинет"
+  ACCOUNT: "Личный кабинет",
+  REACTORSEDITOR: "Редактирование реакторов",
+  REACTORSCREATOR: "Создание реактора",
+  REACTORSLISTEDITOR: "Модерация реакторов",
+  STATIONSEDITOR: "Станции"
 };

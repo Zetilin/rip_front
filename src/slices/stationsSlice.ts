@@ -122,8 +122,6 @@ const stationSlice = createSlice({
             .addCase(getStation.fulfilled, (state, action) => {
                 state.stationData = action.payload;
                 state.reactorstations = action.payload.reactors;
-                //console.log(action.payload);
-                //console.log(state.reactorstations);
 
                 state.isDraft = state.stationData.status == 1;
             })

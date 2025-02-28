@@ -1,4 +1,4 @@
-import {ReactorsResult} from './NuclearApi'
+import {ReactorsResult, Reactor} from './NuclearApi'
 
 export const REACTORS_MOCK: ReactorsResult = {
   current_station_id: 0,
@@ -12,4 +12,12 @@ export const REACTORS_MOCK: ReactorsResult = {
       img_url: '',
     },
   ],
+};
+
+export const SOLOREACTOR_MOCK: Reactor = {
+  id: 1,
+  name: 'Нет соединения, повторите позже!',
+  fuel: '',
+  description: '',
+  img_url: '',
 };

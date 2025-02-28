@@ -3,12 +3,14 @@ import { reactorReducer } from "./slices/reactorSlice"
 import { useDispatch } from 'react-redux';
 import userReducer from './slices/userSlice'; 
 import { stationsReducer } from './slices/stationsSlice'
+import { stationmanyReducer } from "./slices/stationmanySlice";
 
 export const store = configureStore({
     reducer: combineReducers({
         reactor: reactorReducer,
         user: userReducer,
         station: stationsReducer,
+        stations: stationmanyReducer
     })
 })
 

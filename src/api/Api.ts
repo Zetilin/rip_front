@@ -93,6 +93,8 @@ export interface Station {
    * @max 2147483647
    */
   year?: number | null;
+
+  qr?: string;
 }
 
 export interface ReactorStation {
@@ -403,11 +405,15 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request POST:/reactors/{reactor_id}/update_image/
      * @secure
      */
-    addReactorPhoto: (reactorId: string, params: RequestParams = {}) =>
+    addReactorPhoto: (reactorId: string, formData: FormData, params: RequestParams = {}) =>
       this.request<void, any>({
         path: `/reactors/${reactorId}/update_image/`,
         method: "POST",
         secure: true,
+        body: formData,
+        headers: {
+          "Content-Type": "multipart/form-data", // Указываем правильный Content-Type
+        },
         ...params,
       }),
   };
@@ -420,11 +426,16 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request GET:/stations/
      * @secure
      */
-    getStationsList: (params: RequestParams = {}) =>
+    getStationsList: (params: {date_formation_start?: string, date_formation_end?: string, status?: number} & RequestParams = {}) =>
       this.request<void, any>({
         path: `/stations/`,
         method: "GET",
         secure: true,
+        query :{
+          date_formation_start: params.date_formation_start,
+          date_formation_end: params.date_formation_end,
+          status: params.status
+        },
         ...params,
       }),
 
@@ -487,11 +498,14 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request PUT:/stations/{station_id}/update_status_admin/
      * @secure
      */
-    moderateStation: (stationId: string, params: RequestParams = {}) =>
+    moderateStation: (stationId: string, params: {status?: number } & RequestParams = {}) =>
       this.request<void, any>({
         path: `/stations/${stationId}/update_status_admin/`,
         method: "PUT",
         secure: true,
+        body: {
+          status: params.status,
+        },
         ...params,
       }),
 

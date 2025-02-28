@@ -12,34 +12,35 @@ import { BreadCrumbs } from '../components/BreadCrumbs';
 const ReactorEditor: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { reactorId } = useParams<{ reactorId: string }>(); // Получаем ID спикера из URL
+  const { reactorId } = useParams<{ reactorId: string }>(); 
   const reactors = useSelector((state: RootState) => state.reactor.reactorsData.reactors);
 
-  // Находим редактируемого спикера по ID
+  
   const currentReactor = reactors.find((reactor) => reactor.id === Number(reactorId));
 
   // Состояние для формы редактирования
   const [formData, setFormData] = useState<Reactor>({
     id: 0,
+    status: 0,
     name: '',
     fuel: '',
     description: '',
     image: '',
   });
 
-  // Загружаем список спикеров при монтировании компонента
+  
   useEffect(() => {
     dispatch(getReactorList());
   }, [dispatch]);
 
-  // Заполняем форму данными текущего спикера, когда он загружен
+  
   useEffect(() => {
     if (currentReactor) {
       setFormData(currentReactor);
     }
   }, [currentReactor]);
 
-  // Обработчик изменения полей формы
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -48,7 +49,7 @@ const ReactorEditor: React.FC = () => {
     }));
   };
 
-  // Обработчик отправки формы
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(updateReactor({ reactorId: String(formData.id), data: formData })); 
@@ -70,6 +71,16 @@ const ReactorEditor: React.FC = () => {
             type="text"
             name="name"
             value={formData.name}
+            onChange={handleInputChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formStatus">
+          <Form.Label>Статус: 1 - Действует, 2 - Удалена</Form.Label>
+          <Form.Control
+            type="number"
+            name="name"
+            value={formData.status}
             onChange={handleInputChange}
           />
         </Form.Group>

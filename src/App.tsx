@@ -14,6 +14,10 @@ import { useSelector } from 'react-redux';
 import { Page403 } from './pages/403Page';
 import { Page404 } from './pages/404Page';
 import AccountPage from "./pages/accountPage";
+import ReactorEditor from "./pages/reactorsEditor";
+import ReactorCreator from "./pages/AddReactorPage";
+import { ReactorListEditor } from "./pages/reactorsListEditor";
+import StationsEditor from './pages/stationsEditor'
 
 
 const ProtectedRoute = ({ children, isAuthenticated, isModerator }) => {
@@ -52,6 +56,38 @@ function App() {
               element={
                 <AuthRoute isAuthenticated={isAuthenticated}>
                   <AccountPage />
+                </AuthRoute>
+              }
+            />
+            <Route
+              path={`${ROUTES.REACTORSEDITOR}/:reactorId`}
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated} isModerator={isModerator}>
+                  <ReactorEditor />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path={ROUTES.REACTORSCREATOR}
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated} isModerator={isModerator}>
+                  <ReactorCreator />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path={ROUTES.REACTORSLISTEDITOR}
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated} isModerator={isModerator}>
+                  <ReactorListEditor />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path={ROUTES.STATIONSEDITOR}
+              element={
+                <AuthRoute isAuthenticated={isAuthenticated}>
+                  <StationsEditor />
                 </AuthRoute>
               }
             />

@@ -1,5 +1,6 @@
 export interface Reactor {
     id: number;
+    status: number;
     name: string;
     fuel: string;
     description: string;
@@ -36,4 +37,5 @@ export interface Reactor {
     "name": string;
     "location": string;
     "year": number;
+    "qr": string;
   }

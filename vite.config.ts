@@ -7,6 +7,8 @@ export default defineConfig({
   plugins: [react()],
   base: "/rip_front",
   server: {
+    //host: '192.168.31.8', // Укажите IP-адрес
+    //port: 3000,      
     proxy: {
       "/api": {
         target: "http://localhost:8000",
@@ -19,6 +21,9 @@ export default defineConfig({
         secure: false, // Позволяет работать без HTTPS
         rewrite: (path) => path.replace(/^\/minio/, ""),
       },
+      "/graphql": {
+        target: "http://localhost:8000"
+      }
     },
     
     https:{

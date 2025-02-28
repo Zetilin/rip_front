@@ -17,6 +17,7 @@ const Navigation = () => {
     const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated); // получение из стора значения флага состояния приложения
     const username = useSelector((state: RootState) => state.user.username); // получение значения username из стора
 
+    const isModerator = useSelector((state: RootState) => state.user.isModerator);
     // Обработчик события нажатия на кнопку "Выйти"
     const handleExit = async ()  => {
         await dispatch(logoutUserAsync());
@@ -46,6 +47,14 @@ const Navigation = () => {
                     <Nav.Link as={Link} to={ROUTES.REACTORS} className="d-inline-block">
                     {ROUTE_LABELS.REACTORS}
                     </Nav.Link>
+                    <Nav.Link as={Link} to={ROUTES.STATIONSEDITOR} className="d-inline-block px-3">
+                        Станции
+                    </Nav.Link>
+                    {(isAuthenticated == true) && (isModerator == true) && (
+                        <Nav.Link as={Link} to={ROUTES.REACTORSLISTEDITOR} className="d-inline-block px-3">
+                            Изменить реакторы
+                        </Nav.Link>
+                    )}
                     {isAuthenticated ? (
                         <Nav.Link as={Link} to={ROUTES.ACCOUNT} className="d-inline-block px-3">
                             {username}

@@ -46,7 +46,7 @@ interface UserState {
     async(credentials: {username: string; password: string }, {rejectWithValue }) => {
         try {
             const response = await api.login.loginCreate(credentials);
-            console.log(response.data)
+            //console.log(response.data)
             return response.data
         } catch (error) {
             return rejectWithValue('Ошибка авторизации');
@@ -59,7 +59,7 @@ export const logoutUserAsync = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
           const response = await api.logout.logoutCreate();
-          console.log(response.data)
+          //console.log(response.data)
           return response.data; 
         } catch (error) {
           return rejectWithValue('Ошибка при выходе из системы'); 

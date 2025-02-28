@@ -112,7 +112,7 @@ const StationPage: React.FC = () => {
         navigate(`${ROUTES.REACTORS}/${reactor_id}`);
       };
 
-      console.log(reactorstations);
+      //console.log(reactorstations);
       return (
         <main className="container">
             <BreadCrumbs 
@@ -144,15 +144,15 @@ const StationPage: React.FC = () => {
                         value={stationData.location || ''} 
                         onChange={handleInputChange}
                         name="location"
-                        style={{ width: '250px', height: '150px' }}
+                        style={{ width: '250px', height: '30px' }}
                     />
                 </Form.Group>
                 <Form.Group className="form-group">
                     <Form.Label className="form-label">Год ввода в строй</Form.Label>
                     <Form.Control 
                         type="text" 
-                        placeholder="Введите год" 
-                        disabled={!isDraft} 
+                        placeholder="" 
+                        disabled={true} 
                         value={stationData.year || ''} 
                         onChange={handleInputChange}
                         name="year"
@@ -179,8 +179,8 @@ const StationPage: React.FC = () => {
                                 <div className="card-body" >
                                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
                                         <div id='carddd' style={{ display: 'flex', alignItems: 'center', width: '100%', flexDirection: 'row', justifyContent: 'space-between' }}>
-                                            <span className="card-text" style={{ marginLeft: '5px' }}>{reactorstation.name}</span>
-                                            <span className="card-text" style={{ marginLeft: '5px' }}>Топливо: {reactorstation.fuel}</span>
+                                            <span className="card-text" style={{ marginLeft: '5px', width: '10%', whiteSpace: 'nowrap'}}>{reactorstation.name}</span>
+                                            <span className="card-text" style={{ marginLeft: '5px' , width: '20%'}}>Топливо: {reactorstation.fuel}</span>
                                             <Form.Group style={{ display: 'flex', alignItems: 'center' }}>
                                                 <Form.Control
                                                     disabled={!isDraft}
